@@ -1,4 +1,11 @@
 /*
+ * Adapted from Daniel Shiffman's Pendulum exercise.
+ * Found in Chapter 3 of The Nature Of Code.
+ *
+ * Double Pendulum calculations from: http://www.myphysicslab.com/dbl_pendulum.html
+*/
+
+/*
 * TODO:
 *   - Add starting angle higher to build velocity
 *   - Add sliders to adjust variables
