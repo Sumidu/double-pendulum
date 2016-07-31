@@ -33,9 +33,16 @@ class DoublePendulum {
         location1 = new PVector();
         location2 = new PVector();
 
-        theta1 = PI/4;
+        // Change these to alter starting points
+        theta1 = PI/4; 
+        theta2 = PI/4;
+
         omega1 = 0.0;
+        omega2 = 0.0;
         alpha1 = 0.0;
+        alpha2 = 0.0;
+
+        // Change this to add 'friction'
         damping = 1;
 
         // Update masses for different interactions
