@@ -11,8 +11,18 @@
 *   - Add sliders to adjust variables
 *   - Add option to set fading trails
 *   - Toggle views (show rods/bob1/bob2)
+*   - Figure out what to do with multiple enum reference
+* DONE:
 *   - Breakout all variables into bob class objects
 */
+
+enum DISPLAY_TRAIL {
+    TRAIL, NO_TRAIL;
+}
+
+enum DISPLAY_MODE {
+    LINE, POINT;
+}
 
 class DoublePendulum {
     Bob b1, b2;
@@ -45,8 +55,12 @@ class DoublePendulum {
     void display() {
         stroke(175);
         fill(175);
-        // line(origin.x, origin.y, b1.location.x, b1.location.y);
-        // line(b1.location.x, b1.location.y, b2.location.x, b2.location.y);
+
+        if(dm == DISPLAY_MODE.LINE) {
+            line(origin.x, origin.y, b1.location.x, b1.location.y);
+            line(b1.location.x, b1.location.y, b2.location.x, b2.location.y);
+        }
+        
         b1.display();
         b2.display();
     }
@@ -72,16 +86,22 @@ class DoublePendulum {
 }
 
 DoublePendulum p;
+DISPLAY_TRAIL dt;
+DISPLAY_MODE dm;
 
 void setup() {
+    dt = DISPLAY_TRAIL.NO_TRAIL;
+    dm = DISPLAY_MODE.LINE;
     size(640,640);
-    background(0); // show trails
+    if(dt == DISPLAY_TRAIL.TRAIL)
+        background(0); // show trails
     frameRate(30);
     blendMode(ADD);
     p = new DoublePendulum(new PVector(width/2, 75), 100);
 }
 
 void draw() {
-    //background(0); // don't show trails
+    if(dt == DISPLAY_TRAIL.NO_TRAIL)
+        background(0); // don't show trails
     p.go();
 }
