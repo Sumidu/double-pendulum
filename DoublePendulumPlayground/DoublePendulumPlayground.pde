@@ -7,13 +7,12 @@
 
 /*
 * TODO:
-*   - Add starting angle higher to build velocity
 *   - Add sliders to adjust variables
-*   - Add option to set fading trails
-*   - Toggle views (show rods/bob1/bob2)
-*   - Figure out what to do with multiple enum reference
+*   - Add option to set fading trails -> keep track of past points in an array, loop through and draw all every frame
+*
 * DONE:
 *   - Breakout all variables into bob class objects
+*   - Toggle views (show rods/bob1/bob2)
 */
 
 enum DISPLAY_TRAIL {
@@ -30,16 +29,14 @@ class DoublePendulum {
 
     float r; // rod length ****MODIFY LATER FOR ADJUSTABLE ROD LENGTHS***
     float g = 0.4; // arbitrary gravity constant
+    float damping = 1; // Change this to add 'friction'
 
     DoublePendulum(PVector origin, float r) {
         this.origin = origin.copy();
         this.r = r;
 
-        b1 = new Bob(8);
+        b1 = new Bob(10);
         b2 = new Bob(2);
-
-        // Change this to add 'friction'
-        //damping = 1;
     }
 
     void go() {
@@ -90,8 +87,8 @@ DISPLAY_TRAIL dt;
 DISPLAY_MODE dm;
 
 void setup() {
-    dt = DISPLAY_TRAIL.NO_TRAIL;
-    dm = DISPLAY_MODE.LINE;
+    dt = DISPLAY_TRAIL.TRAIL;
+    dm = DISPLAY_MODE.POINT;
     size(640,640);
     if(dt == DISPLAY_TRAIL.TRAIL)
         background(0); // show trails
