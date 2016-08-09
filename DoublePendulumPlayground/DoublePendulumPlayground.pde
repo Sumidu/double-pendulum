@@ -87,8 +87,8 @@ DISPLAY_TRAIL dt;
 DISPLAY_MODE dm;
 
 void setup() {
-    dt = DISPLAY_TRAIL.TRAIL;
-    dm = DISPLAY_MODE.POINT;
+    dt = DISPLAY_TRAIL.NO_TRAIL;
+    dm = DISPLAY_MODE.LINE;
     size(640,640);
     if(dt == DISPLAY_TRAIL.TRAIL)
         background(0); // show trails
